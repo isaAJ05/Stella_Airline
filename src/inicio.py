@@ -26,7 +26,10 @@ while True:  # Bucle Validación
     ruta_archivo = os.path.join(ruta_script, 'Archivos', 'flights_final.csv')  # Construye la ruta al archivo
     encontrado = buscar_en_csv(ruta_archivo, 'Source Airport Code', valor_buscado)
     if encontrado:
-        break  # Si se encontró una coincidencia, se rompe el bucle
+        continuar = input("\n¿Desea continuar? (s/n): ")
+        if continuar.lower() != 's':
+            print("\n¡Gracias por usar Stella Airline! ¡Hasta pronto!")
+            break  # Si el usuario no desea continuar, se rompe el bucle
     else:
         print("No se encontró el código ingresado. Por favor, intenta de nuevo.")  # Si no se encontró una coincidencia, se pide al usuario que intente de nuevo
     print("*************************************************************\n")
