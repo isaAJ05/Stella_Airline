@@ -20,12 +20,14 @@ def buscar_en_csv(nombre_archivo, nombre_columna, valor_buscado):
 
 print("\nBienvenido a Stella Airline")
 
-while True:  # Bucle Validación
+cont=0
+while True and cont<2:  # Bucle Validación
     valor_buscado = input("\n-> Introduce el código del aeropuerto: ")
     ruta_script = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))  # Obtiene la ruta del directorio del script actual
     ruta_archivo = os.path.join(ruta_script, 'Archivos', 'flights_final.csv')  # Construye la ruta al archivo
     encontrado = buscar_en_csv(ruta_archivo, 'Source Airport Code', valor_buscado)
     if encontrado:
+        cont+=1
         continuar = input("\n¿Desea continuar? (s/n): ")
         if continuar.lower() != 's':
             print("\n¡Gracias por usar Stella Airline! ¡Hasta pronto!")
@@ -33,3 +35,5 @@ while True:  # Bucle Validación
     else:
         print("No se encontró el código ingresado. Por favor, intenta de nuevo.")  # Si no se encontró una coincidencia, se pide al usuario que intente de nuevo
     print("*************************************************************\n")
+    if cont==2:
+        print("\nSolo se pueden ingresar dos aereopuertos. ¡Gracias por usar Stella Airline! ¡Hasta pronto!")
