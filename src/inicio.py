@@ -1,55 +1,39 @@
 import csv
 import os
-
-def buscar_en_csv(nombre_archivo, nombre_columna, valor_buscado):
-    with open(nombre_archivo, 'r', encoding='utf-8') as archivo:
-        lector = csv.DictReader(archivo)
-        for fila in lector:
-            if fila[nombre_columna] == valor_buscado:
-                resultado = {
-                    'Codigo': fila['Source Airport Code'],
-                    'Nombre': fila['Source Airport Name'],
-                    'Ciudad': fila['Source Airport City'],
-                    'Pais': fila['Source Airport Country'],
-                    'Latitud': fila['Source Airport Latitude'],
-                    'Longitud': fila['Source Airport Longitude']
-                }
-                print(resultado)
-                return True  # Retorna True si encuentra una coincidencia
-    return False  # Retorna False si no encuentra una coincidencia
-def buscar_en_csv(nombre_archivo, nombre_columna, valor_buscado):
-    with open(nombre_archivo, 'r', encoding='utf-8') as archivo:
-        lector = csv.DictReader(archivo)
-        for fila in lector:
-            if fila[nombre_columna] == valor_buscado:
-                resultado = {
-                    'Codigo': fila['Source Airport Code'],
-                    'Nombre': fila['Source Airport Name'],
-                    'Ciudad': fila['Source Airport City'],
-                    'Pais': fila['Source Airport Country'],
-                    'Latitud': fila['Source Airport Latitude'],
-                    'Longitud': fila['Source Airport Longitude']
-                }
-                print(resultado)
-                return resultado  # Retorna True si encuentra una coincidencia
-    return None  # Retorna False si no encuentra una coincidencia
+import pandas as pd
+from Grafo import Grafito
 
 print("\nBienvenido a Stella Airline") #INICIOOOOOO
+# Leer el archivo CSV
+df = pd.read_csv('Archivos/flights_final.csv')
+# Crear un grafo
+G = Grafito()
 
-cont=0 #no se si les parece, pase esto a una clase aereopuerto, asi accedemos a la info desde la clase, o no se
-while True and cont<2:  # Bucle Validación
-    valor_buscado = input("\n-> Introduce el código del aeropuerto: ")
-    ruta_script = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))  # Obtiene la ruta del directorio del script actual
-    ruta_archivo = os.path.join(ruta_script, 'Archivos', 'flights_final.csv')  # Construye la ruta al archivo
-    encontrado = buscar_en_csv(ruta_archivo, 'Source Airport Code', valor_buscado)
-    if encontrado:
-        cont+=1
-        continuar = input("\n¿Desea continuar? (s/n): ")
-        if continuar.lower() != 's':
-            print("\n¡Gracias por usar Stella Airline! ¡Hasta pronto!")
-            break  # Si el usuario no desea continuar, se rompe el bucle
+# Añadir los nodos y las aristas al grafo
+for _, row in df.iterrows():
+    G.add_vertex(row['Source Airport Code'], row['Source Airport Name'], row['Source Airport City'], row['Source Airport Country'], row['Source Airport Latitude'], row['Source Airport Longitude'])
+    G.add_vertex(row['Destination Airport Code'], row['Destination Airport Name'], row['Destination Airport City'], row['Destination Airport Country'], row['Destination Airport Latitude'], row['Destination Airport Longitude'])
+    peso = G.calcular_distancia(row['Source Airport Latitude'], row['Source Airport Longitude'], row['Destination Airport Latitude'], row['Destination Airport Longitude'])
+    G.add_edge(row['Source Airport Code'], row['Destination Airport Code'], peso)
+
+while True :  # Bucle para continuar o salir del programa
+    print("\n1. Mostrar información de un aeropuerto y consultar los 10 aeropuertos más lejanos")
+    print("2. Salir")
+    opcion = input("\n-> Introduce el número de la opción que deseas: ")
+    
+    if opcion == '1':
+        valor_buscado = input("\nIntroduce el código del aeropuerto: ")
+        if valor_buscado in G.nodes:
+            print("\nInformación del aeropuerto:")
+            G.mostrar_informacion_aeropuerto(valor_buscado)
+            print("\nLos 10 aeropuertos más lejanos son:")
+            G.diez_aeropuertos_mas_lejanos(valor_buscado)  
+        else:
+            print("No se encontró el código ingresado. Por favor, intenta de nuevo.")  # Si no se encontró una coincidencia, se pide al usuario que intente de nuevo
+    elif opcion == '2':
+        print("\n¡Gracias por usar Stella Airline! ¡Hasta pronto!")
+        break  # Si el usuario no desea continuar, se rompe el bucle
     else:
-        print("No se encontró el código ingresado. Por favor, intenta de nuevo.")  # Si no se encontró una coincidencia, se pide al usuario que intente de nuevo
-    print("*************************************************************\n")
-    if cont==2:
-        print("\nSolo se pueden ingresar dos aereopuertos. ¡Gracias por usar Stella Airline! ¡Hasta pronto!")
+        print("Opción no válida. Por favor, intenta de nuevo.")
+    
+    print("*************************************************************\n")  
