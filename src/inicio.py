@@ -17,10 +17,26 @@ def buscar_en_csv(nombre_archivo, nombre_columna, valor_buscado):
                 print(resultado)
                 return True  # Retorna True si encuentra una coincidencia
     return False  # Retorna False si no encuentra una coincidencia
+def buscar_en_csv(nombre_archivo, nombre_columna, valor_buscado):
+    with open(nombre_archivo, 'r', encoding='utf-8') as archivo:
+        lector = csv.DictReader(archivo)
+        for fila in lector:
+            if fila[nombre_columna] == valor_buscado:
+                resultado = {
+                    'Codigo': fila['Source Airport Code'],
+                    'Nombre': fila['Source Airport Name'],
+                    'Ciudad': fila['Source Airport City'],
+                    'Pais': fila['Source Airport Country'],
+                    'Latitud': fila['Source Airport Latitude'],
+                    'Longitud': fila['Source Airport Longitude']
+                }
+                print(resultado)
+                return resultado  # Retorna True si encuentra una coincidencia
+    return None  # Retorna False si no encuentra una coincidencia
 
-print("\nBienvenido a Stella Airline")
+print("\nBienvenido a Stella Airline") #INICIOOOOOO
 
-cont=0
+cont=0 #no se si les parece, pase esto a una clase aereopuerto, asi accedemos a la info desde la clase, o no se
 while True and cont<2:  # Bucle Validación
     valor_buscado = input("\n-> Introduce el código del aeropuerto: ")
     ruta_script = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))  # Obtiene la ruta del directorio del script actual
