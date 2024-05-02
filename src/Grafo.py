@@ -1,7 +1,5 @@
 from math import sin, cos, sqrt, atan2, radians
 import networkx as nx
-from mpl_toolkits.basemap import Basemap
-import matplotlib.pyplot as plt
 import folium
 
 class Grafito:
