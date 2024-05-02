@@ -1,5 +1,8 @@
 from math import sin, cos, sqrt, atan2, radians
 import networkx as nx
+from mpl_toolkits.basemap import Basemap
+import matplotlib.pyplot as plt
+import folium
 
 class Grafito:
     def __init__(self) -> None:
@@ -51,3 +54,32 @@ class Grafito:
             print(f"\nAeropuerto: {codigo}")
             self.mostrar_informacion_aeropuerto(codigo)
             print(f"Distancia desde {codigo_origen}: {distancia} km")
+    
+    def camino_minimo(self, codigo_origen, codigo_destino):
+        # Calcula el camino más corto desde un aeropuerto de origen a un aeropuerto de destino
+        return nx.dijkstra_path(self.G, codigo_origen, codigo_destino)
+
+    def dibujar_camino_minimo(self, codigo_origen, codigo_destino):
+        # Obtiene el camino más corto entre dos aeropuertos
+        camino = self.camino_minimo(codigo_origen, codigo_destino)
+
+        # Crea un mapa centrado en el primer aeropuerto del camino
+        lat1, lon1 = self.nodes[camino[0]]['latitud'], self.nodes[camino[0]]['longitud']
+        m = folium.Map(location=[lat1, lon1], zoom_start=2)
+
+        # Dibuja el camino en el mapa
+        for i in range(len(camino) - 1):
+            lat1, lon1 = self.nodes[camino[i]]['latitud'], self.nodes[camino[i]]['longitud']
+            lat2, lon2 = self.nodes[camino[i+1]]['latitud'], self.nodes[camino[i+1]]['longitud']
+
+            # Dibuja una línea entre los aeropuertos
+            folium.PolyLine([(lat1, lon1), (lat2, lon2)], color="blue", weight=2.5, opacity=1).add_to(m)
+
+            # Añade un marcador para cada aeropuerto
+            folium.Marker([lat1, lon1], popup=f"Código: {camino[i]}\nNombre: {self.nodes[camino[i]]['nombre']}\nCiudad: {self.nodes[camino[i]]['ciudad']}\nPaís: {self.nodes[camino[i]]['pais']}\nLatitud: {lat1}\nLongitud: {lon1}").add_to(m)
+
+        # Añade un marcador para el último aeropuerto
+        folium.Marker([lat2, lon2], popup=f"Código: {camino[-1]}\nNombre: {self.nodes[camino[-1]]['nombre']}\nCiudad: {self.nodes[camino[-1]]['ciudad']}\nPaís: {self.nodes[camino[-1]]['pais']}\nLatitud: {lat2}\nLongitud: {lon2}").add_to(m)
+
+        # Muestra el mapa
+        return m

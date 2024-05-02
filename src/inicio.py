@@ -22,12 +22,19 @@ while True :  # Bucle para continuar o salir del programa
     opcion = input("\n-> Introduce el número de la opción que deseas: ")
     
     if opcion == '1':
-        valor_buscado = input("\nIntroduce el código del aeropuerto: ")
-        if valor_buscado in G.nodes:
+        aeropuerto1 = input("\nIntroduce el código del aeropuerto: ")
+        if aeropuerto1 in G.nodes:
             print("\nInformación del aeropuerto:")
-            G.mostrar_informacion_aeropuerto(valor_buscado)
+            G.mostrar_informacion_aeropuerto(aeropuerto1)
             print("\nLos 10 aeropuertos más lejanos son:")
-            G.diez_aeropuertos_mas_lejanos(valor_buscado)  
+            G.diez_aeropuertos_mas_lejanos(aeropuerto1)
+            aeropuerto2 = input("\nIntroduce el código del aeropuerto de destino: ")
+            if aeropuerto2 in G.nodes:
+                mapa = G.dibujar_camino_minimo(aeropuerto1, aeropuerto2)
+                # Guardar el mapa como un archivo HTML
+                mapa.save('mapa.html') 
+            else:
+                print("No se encontró el código del segundo aeropuerto ingresado. Por favor, intenta de nuevo.")  # Si no se encontró una coincidencia, se pide al usuario que intente de nuevo 
         else:
             print("No se encontró el código ingresado. Por favor, intenta de nuevo.")  # Si no se encontró una coincidencia, se pide al usuario que intente de nuevo
     elif opcion == '2':
