@@ -1,4 +1,5 @@
 import pandas as pd
+import webbrowser 
 from Grafo import Grafito
 
 print("\nBienvenido a Stella Airline") #INICIOOOOOO
@@ -31,6 +32,7 @@ while True :  # Bucle para continuar o salir del programa
                 mapa = G.dibujar_camino_minimo(aeropuerto1, aeropuerto2)
                 # Guardar el mapa como un archivo HTML
                 mapa.save('mapa.html') 
+                webbrowser.open('mapa.html')  # Abrir el mapa en el navegador
             else:
                 print("No se encontró el código del segundo aeropuerto ingresado. Por favor, intenta de nuevo.")  # Si no se encontró una coincidencia, se pide al usuario que intente de nuevo 
         else:

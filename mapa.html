@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    
+        <script>
+            L_NO_TOUCH = false;
+            L_DISABLE_3D = false;
+        </script>
+    
+    <style>html, body {width: 100%;height: 100%;margin: 0;padding: 0;}</style>
+    <style>#map {position:absolute;top:0;bottom:0;right:0;left:0;}</style>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_6a5116a3d0cdae6d8c0fa5405b74982d {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+        
+</head>
+<body>
+    
+    
+            <div class="folium-map" id="map_6a5116a3d0cdae6d8c0fa5405b74982d" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_6a5116a3d0cdae6d8c0fa5405b74982d = L.map(
+                "map_6a5116a3d0cdae6d8c0fa5405b74982d",
+                {
+                    center: [-23.80669975, 133.9019928],
+                    crs: L.CRS.EPSG3857,
+                    zoom: 2,
+                    zoomControl: true,
+                    preferCanvas: false,
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_f7ec3e8faa9ab4dfe2b1e3ad3f0789ec = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {"attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors", "detectRetina": false, "maxNativeZoom": 19, "maxZoom": 19, "minZoom": 0, "noWrap": false, "opacity": 1, "subdomains": "abc", "tms": false}
+            );
+        
+    
+            tile_layer_f7ec3e8faa9ab4dfe2b1e3ad3f0789ec.addTo(map_6a5116a3d0cdae6d8c0fa5405b74982d);
+        
+    
+            var poly_line_8bdd3a487bd2c3a2cca20c6f14002dad = L.polyline(
+                [[-23.80669975, 133.9019928], [-12.41469955, 130.8769989]],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "blue", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1, "smoothFactor": 1.0, "stroke": true, "weight": 2.5}
+            ).addTo(map_6a5116a3d0cdae6d8c0fa5405b74982d);
+        
+    
+            var marker_9bea24c0af128f0b6e29ef2d71865d7d = L.marker(
+                [-23.80669975, 133.9019928],
+                {}
+            ).addTo(map_6a5116a3d0cdae6d8c0fa5405b74982d);
+        
+    
+        var popup_fb2b54109001a945d218f054599669ba = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_e2d139dfa275eda359b357517602ef7f = $(`<div id="html_e2d139dfa275eda359b357517602ef7f" style="width: 100.0%; height: 100.0%;">Código: ASP Nombre: Alice Springs Airport Ciudad: Alice Springs País: Australia Latitud: -23.80669975 Longitud: 133.9019928</div>`)[0];
+                popup_fb2b54109001a945d218f054599669ba.setContent(html_e2d139dfa275eda359b357517602ef7f);
+            
+        
+
+        marker_9bea24c0af128f0b6e29ef2d71865d7d.bindPopup(popup_fb2b54109001a945d218f054599669ba)
+        ;
+
+        
+    
+    
+            var poly_line_00a494fa6d3998c26135a1e1ed9babcd = L.polyline(
+                [[-12.41469955, 130.8769989], [14.5086, 121.019997]],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "blue", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1, "smoothFactor": 1.0, "stroke": true, "weight": 2.5}
+            ).addTo(map_6a5116a3d0cdae6d8c0fa5405b74982d);
+        
+    
+            var marker_061cdd1a802bf506e92823b49b36e958 = L.marker(
+                [-12.41469955, 130.8769989],
+                {}
+            ).addTo(map_6a5116a3d0cdae6d8c0fa5405b74982d);
+        
+    
+        var popup_f95aefbb08b6e1eda91a6aa0d80ea5cd = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_fa48ad5619088fcb32de62dbaf9900e4 = $(`<div id="html_fa48ad5619088fcb32de62dbaf9900e4" style="width: 100.0%; height: 100.0%;">Código: DRW Nombre: Darwin International Airport Ciudad: Darwin País: Australia Latitud: -12.41469955 Longitud: 130.8769989</div>`)[0];
+                popup_f95aefbb08b6e1eda91a6aa0d80ea5cd.setContent(html_fa48ad5619088fcb32de62dbaf9900e4);
+            
+        
+
+        marker_061cdd1a802bf506e92823b49b36e958.bindPopup(popup_f95aefbb08b6e1eda91a6aa0d80ea5cd)
+        ;
+
+        
+    
+    
+            var poly_line_1366f43bc601cc8291e843882217d20a = L.polyline(
+                [[14.5086, 121.019997], [22.308901, 113.915001]],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "blue", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1, "smoothFactor": 1.0, "stroke": true, "weight": 2.5}
+            ).addTo(map_6a5116a3d0cdae6d8c0fa5405b74982d);
+        
+    
+            var marker_f5e5c49506379f83a71fa570ad129cf2 = L.marker(
+                [14.5086, 121.019997],
+                {}
+            ).addTo(map_6a5116a3d0cdae6d8c0fa5405b74982d);
+        
+    
+        var popup_87584c368656fa357906a658d80e3346 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_3d3ef0510185bc8787af8c8edeca29d2 = $(`<div id="html_3d3ef0510185bc8787af8c8edeca29d2" style="width: 100.0%; height: 100.0%;">Código: MNL Nombre: Ninoy Aquino International Airport Ciudad: Manila País: Philippines Latitud: 14.5086 Longitud: 121.019997</div>`)[0];
+                popup_87584c368656fa357906a658d80e3346.setContent(html_3d3ef0510185bc8787af8c8edeca29d2);
+            
+        
+
+        marker_f5e5c49506379f83a71fa570ad129cf2.bindPopup(popup_87584c368656fa357906a658d80e3346)
+        ;
+
+        
+    
+    
+            var poly_line_4ca38b07fb60a3a70df7d3dc6c6eef0d = L.polyline(
+                [[22.308901, 113.915001], [55.40879822, 37.90629959]],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "blue", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1, "smoothFactor": 1.0, "stroke": true, "weight": 2.5}
+            ).addTo(map_6a5116a3d0cdae6d8c0fa5405b74982d);
+        
+    
+            var marker_b98f1cf564db9b8fa4a26f62fc6ce36d = L.marker(
+                [22.308901, 113.915001],
+                {}
+            ).addTo(map_6a5116a3d0cdae6d8c0fa5405b74982d);
+        
+    
+        var popup_dde14ae6e138412d0de308576bd1fed9 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_1be6bcbf27f80677f7d646e4471e1a94 = $(`<div id="html_1be6bcbf27f80677f7d646e4471e1a94" style="width: 100.0%; height: 100.0%;">Código: HKG Nombre: Hong Kong International Airport Ciudad: Hong Kong País: Hong Kong Latitud: 22.308901 Longitud: 113.915001</div>`)[0];
+                popup_dde14ae6e138412d0de308576bd1fed9.setContent(html_1be6bcbf27f80677f7d646e4471e1a94);
+            
+        
+
+        marker_b98f1cf564db9b8fa4a26f62fc6ce36d.bindPopup(popup_dde14ae6e138412d0de308576bd1fed9)
+        ;
+
+        
+    
+    
+            var marker_b195ee855de6ea09e01bba57b5b203ee = L.marker(
+                [55.40879822, 37.90629959],
+                {}
+            ).addTo(map_6a5116a3d0cdae6d8c0fa5405b74982d);
+        
+    
+        var popup_9a5765b94983fee00f8f825b43516f3a = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_15d4a890501385a4571a8a05db2b4392 = $(`<div id="html_15d4a890501385a4571a8a05db2b4392" style="width: 100.0%; height: 100.0%;">Código: DME Nombre: Domodedovo International Airport Ciudad: Moscow País: Russia Latitud: 55.40879822 Longitud: 37.90629959</div>`)[0];
+                popup_9a5765b94983fee00f8f825b43516f3a.setContent(html_15d4a890501385a4571a8a05db2b4392);
+            
+        
+
+        marker_b195ee855de6ea09e01bba57b5b203ee.bindPopup(popup_9a5765b94983fee00f8f825b43516f3a)
+        ;
+
+        
+    
+</script>
+</html>
