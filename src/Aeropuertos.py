@@ -2,6 +2,7 @@ import csv
 import os
 
 class Aeropuerto:
+    # Constructor
     def __init__(self, codigo, nombre, ciudad, pais, latitud, longitud):
         self.codigo = codigo
         self.nombre = nombre
