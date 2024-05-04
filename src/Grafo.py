@@ -31,13 +31,13 @@ class Grafito:
 
     def mostrar_informacion_aeropuerto(self, codigo):
         # Muestra la información de un aeropuerto
-        aeropuerto = self.nodes[codigo]
+        aeropuerto = self.nodes[codigo] # Obtiene el aeropuerto del diccionario de nodos
         print(f"Código: {codigo}")
         print(f"Nombre: {aeropuerto['nombre']}")
         print(f"Ciudad: {aeropuerto['ciudad']}")
         print(f"País: {aeropuerto['pais']}")
         print(f"Latitud: {aeropuerto['latitud']}")
-        print(f"Latitud: {aeropuerto['longitud']}")
+        print(f"Longitud: {aeropuerto['longitud']}")
 
     def dijkstra(self, start):
         # Calcula las distancias más cortas desde un nodo de inicio usando el algoritmo de Dijkstra
