@@ -12,6 +12,7 @@ class Aeropuerto:
         self.longitud = longitud
 
     @classmethod
+    # Método para cargar la información de los aeropuertos desde un archivo CSV
     def cargar_aeropuertos(cls, nombre_archivo):
         aeropuertos = []
         try:

@@ -35,17 +35,20 @@ while True :  # Bucle para continuar o salir del programa
                     t='0'
                 print("\nLos 10 aeropuertos más lejanos son:")
                 G.diez_aeropuertos_mas_lejanos(aeropuerto1,r,t)
-                # mostar en el mapa las rutas a los 10 aeropuertos mas lejanos
+                # Mostrar en el mapa las rutas a los 10 aeropuertos mas lejanos
             elif op=='3':
                 aeropuerto2 = input("\nIntroduce el código del aeropuerto de destino: ")
                 if aeropuerto2 in G.nodes:
+                    camino_minimo = G.camino_minimo(aeropuerto1, aeropuerto2)
+                    print("\nEl camino mínimo entre el aeropuerto", aeropuerto1, "y el aeropuerto", aeropuerto2, "es:")
+                    print("->", camino_minimo) # Obtener el camino mínimo en consola
                     mapa = G.dibujar_camino_minimo(aeropuerto1, aeropuerto2)
                     # Guardar el mapa como un archivo HTML
                     mapa.save('mapa.html') 
                     webbrowser.open('mapa.html')  # Abrir el mapa en el navegador
                 else:
                     print("No se encontró el código del segundo aeropuerto ingresado. Por favor, intenta de nuevo.")  # Si no se encontró una coincidencia, se pide al usuario que intente de nuevo 
-            print("\n¿Desea continuar con el aeropuerto ", aeropuerto1, "? 1. Si 2. No")
+            print("\n¿Desea continuar con el aeropuerto ", aeropuerto1, "? 1. Si 2. No") # Mini submenú para continuar con el mismo aeropuerto o no
             continuar = input("-> ")
             if continuar == '1':
                 continue

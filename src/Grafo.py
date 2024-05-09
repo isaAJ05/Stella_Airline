@@ -54,7 +54,7 @@ class Grafito:
         
         lat1, lon1 = self.nodes[codigo_origen]['latitud'], self.nodes[codigo_origen]['longitud']
         m2 = folium.Map(location=[lat1, lon1], zoom_start=2)
-
+        
         for codigo, distancia in distancias_ordenadas:
             print(f"\nAeropuerto: {codigo}")
             self.mostrar_informacion_aeropuerto(codigo)
@@ -74,7 +74,7 @@ class Grafito:
         if(r=='1'):
             lat1, lon1 = self.nodes[codigo_origen]['latitud'], self.nodes[codigo_origen]['longitud']
             m2 = folium.Map(location=[lat1, lon1], zoom_start=2)
-
+        
         for codigo, distancia in distancias_ordenadas:
             print(f"\nAeropuerto: {codigo}")
             self.mostrar_informacion_aeropuerto(codigo)
