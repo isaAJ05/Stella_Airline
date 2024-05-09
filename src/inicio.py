@@ -28,8 +28,10 @@ while True :  # Bucle para continuar o salir del programa
                 print("\nInformación del aeropuerto:")
                 G.mostrar_informacion_aeropuerto(aeropuerto1)
             elif op=='2':
+                r=input("\n-> Desea visualizarlos en el mapa? 1. Si 2. No ")
+                
                 print("\nLos 10 aeropuertos más lejanos son:")
-                G.diez_aeropuertos_mas_lejanos(aeropuerto1)
+                G.diez_aeropuertos_mas_lejanos(aeropuerto1,r)
                 # mostar en el mapa las rutas a los 10 aeropuertos mas lejanos
             elif op=='3':
                 aeropuerto2 = input("\nIntroduce el código del aeropuerto de destino: ")
