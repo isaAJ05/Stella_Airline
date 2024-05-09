@@ -1,7 +1,7 @@
 from math import sin, cos, sqrt, atan2, radians
 import networkx as nx
 import folium
-import webbrowser, os
+import webbrowser, os,random
 
 class Grafito:
     def __init__(self) -> None:
@@ -92,6 +92,9 @@ class Grafito:
         camino = self.camino_minimo(codigo_origen, codigo_destino)
         # Crea un conjunto para almacenar las coordenadas de los marcadores ya añadidos
         marcadores = set()
+        # Lista de colores
+        colores = ["red", "blue", "green", "yellow", "pink", "black", "purple", "orange", "brown"]
+        colorRandom = random.choice(colores)
         # Dibuja el camino en el mapa existente
         for i in range(len(camino) - 1):
             # Aquí va el código para dibujar el camino en el mapa  
@@ -103,7 +106,7 @@ class Grafito:
             lat2, lon2 = self.nodes[camino[i+1]]['latitud'], self.nodes[camino[i+1]]['longitud']
 
             # Dibuja una línea entre los aeropuertos
-            folium.PolyLine([(lat1, lon1), (lat2, lon2)], color="blue", weight=2.5, opacity=1).add_to(m)
+            folium.PolyLine([(lat1, lon1), (lat2, lon2)], color=colorRandom, weight=2.5, opacity=1).add_to(m)
 
             # Añade un marcador para cada aeropuerto, si no se ha añadido ya uno en esas coordenadas
             if (lat1, lon1) not in marcadores:
