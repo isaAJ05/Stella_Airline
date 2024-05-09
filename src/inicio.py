@@ -23,7 +23,7 @@ while True :  # Bucle para continuar o salir del programa
     if opcion == '1':
         aeropuerto1 = input("\nIntroduce el código del aeropuerto: ")
         if aeropuerto1 in G.nodes:
-            op=input("\n que desea hacer con el aeropuerto: 1. Mostrar información 2. Consultar los 10 aeropuertos más lejanos 3. Dibujar camino mínimo con otro aeropuerto")
+            op=input("\n¿Qué desea hacer con el aeropuerto?\n 1. Mostrar información\n 2. Consultar los 10 aeropuertos más lejanos\n 3. Dibujar camino mínimo con otro aeropuerto\n-> ")
             if op=='1':
                 print("\nInformación del aeropuerto:")
                 G.mostrar_informacion_aeropuerto(aeropuerto1)
@@ -31,8 +31,6 @@ while True :  # Bucle para continuar o salir del programa
                 print("\nLos 10 aeropuertos más lejanos son:")
                 G.diez_aeropuertos_mas_lejanos(aeropuerto1)
                 # mostar en el mapa las rutas a los 10 aeropuertos mas lejanos
-                
-    
             elif op=='3':
                 aeropuerto2 = input("\nIntroduce el código del aeropuerto de destino: ")
                 if aeropuerto2 in G.nodes:
