@@ -16,7 +16,7 @@ for _, row in df.iterrows():
     G.add_edge(row['Source Airport Code'], row['Destination Airport Code'], peso)
 
 while True :  # Bucle para continuar o salir del programa
-    print("\n1. Mostrar información de un aeropuerto y consultar los 10 aeropuertos más lejanos")
+    print("\n1.Comenzar")
     print("2. Salir")
     opcion = input("\n-> Introduce el número de la opción que deseas: ")
     
@@ -30,6 +30,9 @@ while True :  # Bucle para continuar o salir del programa
             elif op=='2':
                 print("\nLos 10 aeropuertos más lejanos son:")
                 G.diez_aeropuertos_mas_lejanos(aeropuerto1)
+                # mostar en el mapa las rutas a los 10 aeropuertos mas lejanos
+                
+    
             elif op=='3':
                 aeropuerto2 = input("\nIntroduce el código del aeropuerto de destino: ")
                 if aeropuerto2 in G.nodes:

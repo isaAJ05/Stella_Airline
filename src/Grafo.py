@@ -1,6 +1,7 @@
 from math import sin, cos, sqrt, atan2, radians
 import networkx as nx
 import folium
+import webbrowser, os
 
 class Grafito:
     def __init__(self) -> None:
@@ -48,10 +49,41 @@ class Grafito:
         distancias = self.dijkstra(codigo_origen)
         del distancias[codigo_origen]
         distancias_ordenadas = sorted(distancias.items(), key=lambda x: x[1], reverse=True)[:10]
+        
+        lat1, lon1 = self.nodes[codigo_origen]['latitud'], self.nodes[codigo_origen]['longitud']
+        m2 = folium.Map(location=[lat1, lon1], zoom_start=2)
+
         for codigo, distancia in distancias_ordenadas:
             print(f"\nAeropuerto: {codigo}")
             self.mostrar_informacion_aeropuerto(codigo)
             print(f"Distancia desde {codigo_origen}: {distancia} km")
+            self.dibujar_mUchOS_camino_minimo(codigo_origen, codigo,m2)
+
+          # Guardar el mapa como un archivo HTML
+        m2.save('mapa2.html')
+        os.startfile('mapa2.html')
+        
+           
+    def dibujar_mUchOS_camino_minimo(self, codigo_origen, codigo_destino, m):
+        # Obtiene el camino más corto entre dos aeropuertos
+        camino = self.camino_minimo(codigo_origen, codigo_destino)
+
+        # Dibuja el camino en el mapa existente
+        for i in range(len(camino) - 1):
+            # Aquí va el código para dibujar el camino en el mapa  
+            lat1, lon1 = self.nodes[camino[i]]['latitud'], self.nodes[camino[i]]['longitud']
+            lat2, lon2 = self.nodes[camino[i+1]]['latitud'], self.nodes[camino[i+1]]['longitud']
+
+            # Dibuja una línea entre los aeropuertos
+            folium.PolyLine([(lat1, lon1), (lat2, lon2)], color="blue", weight=2.5, opacity=1).add_to(m)
+
+            # Añade un marcador para cada aeropuerto
+            folium.Marker([lat1, lon1], popup=f"Código: {camino[i]}\nNombre: {self.nodes[camino[i]]['nombre']}\nCiudad: {self.nodes[camino[i]]['ciudad']}\nPaís: {self.nodes[camino[i]]['pais']}\nLatitud: {lat1}\nLongitud: {lon1}").add_to(m)
+
+        # Añade un marcador para el último aeropuerto
+        folium.Marker([lat2, lon2], popup=f"Código: {camino[-1]}\nNombre: {self.nodes[camino[-1]]['nombre']}\nCiudad: {self.nodes[camino[-1]]['ciudad']}\nPaís: {self.nodes[camino[-1]]['pais']}\nLatitud: {lat2}\nLongitud: {lon2}").add_to(m)
+
+                  
     
     def camino_minimo(self, codigo_origen, codigo_destino):
         # Calcula el camino más corto desde un aeropuerto de origen a un aeropuerto de destino
