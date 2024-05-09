@@ -103,7 +103,6 @@ class Grafito:
             # Aquí va el código para dibujar el camino en el mapa  
             if i==0:
                 col="pink"
-                
             else:
                 col="blue"
                 
@@ -116,7 +115,7 @@ class Grafito:
 
             # Añade un marcador para cada aeropuerto, si no se ha añadido ya uno en esas coordenadas
             if (lat1, lon1) not in marcadores and i==0: # NO SE DESEA VISUALIZAR LAS RUTAS
-                folium.Marker([lat1, lon1], popup=f"Código: {camino[i]}\nNombre: {self.nodes[camino[i]]['nombre']}\nCiudad: {self.nodes[camino[i]]['ciudad']}\nPaís: {self.nodes[camino[i]]['pais']}\nLatitud: {lat1}\nLongitud: {lon1}",icon=folium.Icon(color=col)).add_to(m)
+                folium.Marker([lat1, lon1], popup=f"Código: {camino[i]}\nNombre: {self.nodes[camino[i]]['nombre']}\nCiudad: {self.nodes[camino[i]]['ciudad']}\nPaís: {self.nodes[camino[i]]['pais']}\nLatitud: {lat1}\nLongitud: {lon1}",icon=folium.Icon(color=col, icon="plane")).add_to(m)
                 marcadores.add((lat1, lon1))
                 
           
@@ -124,7 +123,7 @@ class Grafito:
        
         # Añade un marcador para el último aeropuerto, si no se ha añadido ya uno en esas coordenadas
         if (lat2, lon2) not in marcadores:
-            folium.Marker([lat2, lon2], popup=f"Código: {camino[-1]}\nNombre: {self.nodes[camino[-1]]['nombre']}\nCiudad: {self.nodes[camino[-1]]['ciudad']}\nPaís: {self.nodes[camino[-1]]['pais']}\nLatitud: {lat2}\nLongitud: {lon2}",icon=folium.Icon(color="red")).add_to(m)          
+            folium.Marker([lat2, lon2], popup=f"Código: {camino[-1]}\nNombre: {self.nodes[camino[-1]]['nombre']}\nCiudad: {self.nodes[camino[-1]]['ciudad']}\nPaís: {self.nodes[camino[-1]]['pais']}\nLatitud: {lat2}\nLongitud: {lon2}",icon=folium.Icon(color="cadetblue",icon="cloud")).add_to(m)          
         
                   
     
@@ -149,10 +148,13 @@ class Grafito:
             folium.PolyLine([(lat1, lon1), (lat2, lon2)], color="blue", weight=2.5, opacity=1).add_to(m)
 
             # Añade un marcador para cada aeropuerto
-            folium.Marker([lat1, lon1], popup=f"Código: {camino[i]}\nNombre: {self.nodes[camino[i]]['nombre']}\nCiudad: {self.nodes[camino[i]]['ciudad']}\nPaís: {self.nodes[camino[i]]['pais']}\nLatitud: {lat1}\nLongitud: {lon1}").add_to(m)
+            if i == 0:
+                folium.Marker([lat1, lon1], popup=f"Código: {camino[i]}\nNombre: {self.nodes[camino[i]]['nombre']}\nCiudad: {self.nodes[camino[i]]['ciudad']}\nPaís: {self.nodes[camino[i]]['pais']}\nLatitud: {lat1}\nLongitud: {lon1}", icon=folium.Icon(color="pink", icon = "plane")).add_to(m)
+            else:
+                folium.Marker([lat1, lon1], popup=f"Código: {camino[i]}\nNombre: {self.nodes[camino[i]]['nombre']}\nCiudad: {self.nodes[camino[i]]['ciudad']}\nPaís: {self.nodes[camino[i]]['pais']}\nLatitud: {lat1}\nLongitud: {lon1}", icon=folium.Icon(color="cadetblue", icon = "cloud")).add_to(m)
 
         # Añade un marcador para el último aeropuerto
-        folium.Marker([lat2, lon2], popup=f"Código: {camino[-1]}\nNombre: {self.nodes[camino[-1]]['nombre']}\nCiudad: {self.nodes[camino[-1]]['ciudad']}\nPaís: {self.nodes[camino[-1]]['pais']}\nLatitud: {lat2}\nLongitud: {lon2}").add_to(m)
+        folium.Marker([lat2, lon2], popup=f"Código: {camino[-1]}\nNombre: {self.nodes[camino[-1]]['nombre']}\nCiudad: {self.nodes[camino[-1]]['ciudad']}\nPaís: {self.nodes[camino[-1]]['pais']}\nLatitud: {lat2}\nLongitud: {lon2}", icon=folium.Icon(color="pink", icon = "plane")).add_to(m)
 
         # Muestra el mapa
         return m
