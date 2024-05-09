@@ -23,18 +23,22 @@ while True :  # Bucle para continuar o salir del programa
     if opcion == '1':
         aeropuerto1 = input("\nIntroduce el código del aeropuerto: ")
         if aeropuerto1 in G.nodes:
-            print("\nInformación del aeropuerto:")
-            G.mostrar_informacion_aeropuerto(aeropuerto1)
-            print("\nLos 10 aeropuertos más lejanos son:")
-            G.diez_aeropuertos_mas_lejanos(aeropuerto1)
-            aeropuerto2 = input("\nIntroduce el código del aeropuerto de destino: ")
-            if aeropuerto2 in G.nodes:
-                mapa = G.dibujar_camino_minimo(aeropuerto1, aeropuerto2)
-                # Guardar el mapa como un archivo HTML
-                mapa.save('mapa.html') 
-                webbrowser.open('mapa.html')  # Abrir el mapa en el navegador
-            else:
-                print("No se encontró el código del segundo aeropuerto ingresado. Por favor, intenta de nuevo.")  # Si no se encontró una coincidencia, se pide al usuario que intente de nuevo 
+            op=input("\n que desea hacer con el aeropuerto: 1. Mostrar información 2. Consultar los 10 aeropuertos más lejanos 3. Dibujar camino mínimo con otro aeropuerto")
+            if op=='1':
+                print("\nInformación del aeropuerto:")
+                G.mostrar_informacion_aeropuerto(aeropuerto1)
+            elif op=='2':
+                print("\nLos 10 aeropuertos más lejanos son:")
+                G.diez_aeropuertos_mas_lejanos(aeropuerto1)
+            elif op=='3':
+                aeropuerto2 = input("\nIntroduce el código del aeropuerto de destino: ")
+                if aeropuerto2 in G.nodes:
+                    mapa = G.dibujar_camino_minimo(aeropuerto1, aeropuerto2)
+                    # Guardar el mapa como un archivo HTML
+                    mapa.save('mapa.html') 
+                    webbrowser.open('mapa.html')  # Abrir el mapa en el navegador
+                else:
+                    print("No se encontró el código del segundo aeropuerto ingresado. Por favor, intenta de nuevo.")  # Si no se encontró una coincidencia, se pide al usuario que intente de nuevo 
         else:
             print("No se encontró el código ingresado. Por favor, intenta de nuevo.")  # Si no se encontró una coincidencia, se pide al usuario que intente de nuevo
     elif opcion == '2':
