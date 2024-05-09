@@ -81,13 +81,16 @@ class Grafito:
             print(f"Distancia desde {codigo_origen}: {distancia} km")
             if(r=='1'):
                 self.dibujar_mUchOS_camino_minimo(codigo_origen, codigo,m2,t)
+                
+            # Obtener el camino mínimo entre el aeropuerto de origen y el aeropuerto actual
+            camino_minimo = self.camino_minimo(codigo_origen, codigo)
+            print(f"Camino mínimo desde {codigo_origen} a {codigo}: {camino_minimo}")
 
-          # Guardar el mapa como un archivo HTML
+        # Guardar el mapa como un archivo HTML
        
         if(r=='1'):
             m2.save('mapa2.html')
             os.startfile('mapa2.html')
-        
 
     def dibujar_mUchOS_camino_minimo(self, codigo_origen, codigo_destino, m,t):
     # Obtiene el camino más corto entre dos aeropuertos
