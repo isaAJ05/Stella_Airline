@@ -2,7 +2,7 @@ import pandas as pd
 import webbrowser 
 from Grafo import Grafito
 
-print("\nBienvenido a Stella Airline") #INICIOOOOOO
+print("\n¡Bienvenido a Stella Airline!") #INICIOOOOOO
 # Leer el archivo CSV
 df = pd.read_csv('Archivos/flights_final.csv')
 # Crear un grafo
@@ -22,7 +22,7 @@ while True :  # Bucle para continuar o salir del programa
     
     if opcion == '1':
         aeropuerto1 = input("\nIntroduce el código del aeropuerto: ")
-        if aeropuerto1 in G.nodes:
+        while aeropuerto1 in G.nodes:
             op=input("\n¿Qué desea hacer con el aeropuerto?\n 1. Mostrar información\n 2. Consultar los 10 aeropuertos más lejanos\n 3. Dibujar camino mínimo con otro aeropuerto\n-> ")
             if op=='1':
                 print("\nInformación del aeropuerto:")
@@ -42,6 +42,12 @@ while True :  # Bucle para continuar o salir del programa
                     webbrowser.open('mapa.html')  # Abrir el mapa en el navegador
                 else:
                     print("No se encontró el código del segundo aeropuerto ingresado. Por favor, intenta de nuevo.")  # Si no se encontró una coincidencia, se pide al usuario que intente de nuevo 
+            print("\n¿Desea continuar con el aeropuerto ", aeropuerto1, "? 1. Si 2. No")
+            continuar = input("-> ")
+            if continuar == '1':
+                continue
+            else:
+                break
         else:
             print("No se encontró el código ingresado. Por favor, intenta de nuevo.")  # Si no se encontró una coincidencia, se pide al usuario que intente de nuevo
     elif opcion == '2':
