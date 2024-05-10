@@ -65,6 +65,21 @@ class Grafito:
         m2.save('mapa2.html')
         os.startfile('mapa2.html')
         
+    def mostrar_todos_aeropuertos(self):
+    # Inicializar un mapa con una ubicación central y un nivel de zoom inicial
+        m = folium.Map(location=[0, 0], zoom_start=2)
+
+        # Iterar sobre todos los nodos en el grafo
+        for codigo in self.nodes:
+            # Obtener la latitud y longitud del nodo
+            lat, lon = self.nodes[codigo]['latitud'], self.nodes[codigo]['longitud']
+
+            # Crear un marcador en el mapa en la ubicación del nodo
+            folium.Marker([lat, lon], popup=f"Código: {codigo}\nNombre: {self.nodes[codigo]['nombre']}\nCiudad: {self.nodes[codigo]['ciudad']}\nPaís: {self.nodes[codigo]['pais']}\nLatitud: {lat}\nLongitud: {lon}", icon=folium.Icon(color="red", icon = "plane")).add_to(m)
+
+        # Guardar el mapa como un archivo HTML
+        m.save('todos_aeropuertos.html')
+        os.startfile('todos_aeropuertos.html')    
            
     def diez_aeropuertos_mas_lejanos(self, codigo_origen,r,t):
         # Encuentra los diez aeropuertos más lejanos desde un aeropuerto de origen

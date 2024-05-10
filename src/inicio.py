@@ -14,7 +14,7 @@ for _, row in df.iterrows():
     G.add_vertex(row['Destination Airport Code'], row['Destination Airport Name'], row['Destination Airport City'], row['Destination Airport Country'], row['Destination Airport Latitude'], row['Destination Airport Longitude'])
     peso = G.calcular_distancia(row['Source Airport Latitude'], row['Source Airport Longitude'], row['Destination Airport Latitude'], row['Destination Airport Longitude'])
     G.add_edge(row['Source Airport Code'], row['Destination Airport Code'], peso)
-
+G.mostrar_todos_aeropuertos()   
 while True :  # Bucle para continuar o salir del programa
     print("\n1.Comenzar")
     print("2. Salir")
